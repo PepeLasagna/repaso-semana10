@@ -5,9 +5,35 @@ const PRODUCTS = [
 ];
 
 //Almacenar el ID de un producto en el localStorage y luego redireccionar al usuario a la página de detalles del producto.
-
+localStorage.setItem("productos", JSON.stringify(PRODUCTS))
 document.addEventListener("DOMContentLoaded", function () {
     const productList = document.getElementById("productList");
+
+
+    PRODUCTS.forEach(element => { 
+        const lista = document.createElement("li")
+        const link = document.createElement("a")
+        link.textContent = element.name
+        link.setAttribute("id", element.id)
+        lista.appendChild(link)
+        productList.appendChild(lista)
+
+           
+});
+
+
+
+let link = document.querySelectorAll("a")
+
+
+link.forEach(element => {
+console.log(element)
+    element.addEventListener("click", ()=> {
+        localStorage.setItem("prodID", element.id)
+        window.location.href= "product-info.html"
+    })
+    
+});
 
 // Utiliza un bucle para iterar a través de los productos.
 // Por cada producto, crea un elemento <li> y un enlace <a>.
